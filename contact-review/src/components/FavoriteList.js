@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 
 const FavoriteList = ({contacts}) => (
   <div>
-    <h2></h2>
+    <h2>즐겨 찾기</h2>
   </div>
 );
 

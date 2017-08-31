@@ -38,7 +38,9 @@ class App extends Component {
           selected={view}>
           <FavoriteList contacts={contacts}/>
         </Container>
-        <Container visible={view==='list'} />
+        <Container visible={view==='list'}>
+          <h2>리스트</h2>
+        </Container>
       </div>
     )
   }
