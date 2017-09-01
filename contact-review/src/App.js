@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Container from './components/Container';
 import ViewSelector from './components/ViewSelector';
 import FavoriteList from './components/FavoriteList';
+import FloatingButton from './components/FloatingButton';
 
 class App extends Component {
   state = {
@@ -41,6 +42,7 @@ class App extends Component {
         <Container visible={view==='list'}>
           <h2>리스트</h2>
         </Container>
+        <FloatingButton />
       </div>
     )
   }

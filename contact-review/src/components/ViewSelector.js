@@ -13,8 +13,6 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-
-
 const StyledItem = styled.div`
   /* 레이아웃 */
   height: 100%;
