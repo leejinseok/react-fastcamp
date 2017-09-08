@@ -1,85 +1,58 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import PropTypes from 'prop-types';
-
 import StarIcon from 'react-icons/lib/md/star';
 import PeopleIcon from 'react-icons/lib/md/people';
 
 const Wrapper = styled.div`
     display: flex;
-    height: 4rem;
+    align-items: center;
     position: relative;
+    background: white;
+    box-shadow: 1px 1px 1px 1px ${oc.gray[3]};
 `;
 
-const StyledItem  = styled.div`
-    height: 100%;
-    background: white;
-    display: flex;
+const Li = styled.div`
     flex: 1;
+    display: flex;
     align-items: center;
     justify-content: center;
+    height: 60px;
     color: ${props=> props.active ? oc.gray[9] : oc.gray[6]};
     cursor: pointer;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    transition: background .2s ease-in-out;
     &:hover {
-        background: ${oc.gray[0]}
+        background: ${oc.gray[0]};
     }
 `;
 
-StyledItem.PropTypes = {
-    right: PropTypes.bool
-}
-
 const Bar = styled.div`
     position: absolute;
-    height: 3px;
     bottom: 0px;
-    background: ${oc.pink[6]};
+    height: 3px;
     width: 50%;
-    transition: ease-in .25s;
-    transform: ${props => props.right ? 'translateX(100%)': 'none'};
+    background-color: ${oc.pink[6]};
+    transition: all .2s ease-in-out;
+    transform: ${props=> props.right ? 'translateX(100%)' : 'none'}
 `;
 
-Bar.PropTypes = {
-    right: PropTypes.bool
-}
-
-const Item = ({children, selected, name, onSelect}) => (
-    <StyledItem
-        active={selected === name}
-        onClick={()=>onSelect(name)}>
-        {children}
-    </StyledItem>
-);
-
-Item.PropTypes = {
-    selected: PropTypes.string,
-    name: PropTypes.string,
-    onSelect: PropTypes.func
-}
-
-const ViewSelector = ({onSelect, selected}) => (
+const ViewSelector = ({selected, onSelect}) => (
     <Wrapper>
-        <Item
-            name='favorite'
-            selected={selected}
-            onSelect={onSelect}>
+        <Li
+            active={selected==='favorite'}
+            onClick={()=>onSelect('favorite')}
+        >
             <StarIcon />
-        </Item>
-        <Item
-            name='list'
-            selected={selected}
-            onSelect={onSelect}>
+        </Li>
+        <Li
+            active={selected==='list'}
+            onClick={()=>onSelect('list')}
+        >
             <PeopleIcon />
-        </Item>
+        </Li>
         <Bar right={selected === 'list'}/>
     </Wrapper>
 );
-
-ViewSelector.PropTypes = {
-    onSelect: PropTypes.func,
-    selected: PropTypes.string
-}
 
 export default ViewSelector;

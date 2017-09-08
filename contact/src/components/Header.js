@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
 
 const Wrapper = styled.div`
-    width: 100%;
-    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: ${oc.blue[4]};
+    background: ${oc.teal[5]};
+    height: 3.5rem;
     color: white;
+    font-family: Noto Sans KR;
+    font-weight: 200;
+    font-size: 1.5rem;
 `;
 
 const Header = () => (

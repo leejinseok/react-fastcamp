@@ -1,60 +1,69 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import ViewSelector from './components/ViewSelector';
-import Container from './components/Container';
 import ContactList from './components/ContactList';
-import ContactModal from './components/ContactModal';
 import FloatingButton from './components/FloatingButton';
-
+import Modal from './components/Modal';
+import Dimmer from './components/Dimmer';
 import './App.css';
+
 class App extends Component {
     state = {
-        view: 'favorite',
-        modal: {
-            visible: false,
-            mode: null
-        },
+        view: 'list',
         contacts: [
             {
-                id: 'SyKw5cyAl',
+                id: 'wwLstjR',
                 name: '진석',
-                phone: '010-1111-2222'
+                phone: '010-2222-3333'
             },
             {
-                id: 'r1s_9c10l',
+                id: 'rhkStJr',
                 name: '관석',
-                phone: '010-1111-2222'
+                phone: '010-3333-4444'
             }
-        ]
+        ],
+        modal: {
+            visible: false
+        }
     };
 
-    modalHandler = {
-        show: (mode, payload) => {
-            this.setState({
-                modal: {
-                    mode,
-                    visible: true
-                }
-            })
-        }
+    onClickViewSelector = (name) => {
+        this.setState({
+            view: name
+        });
     }
 
     handleFloatingButtonClick = () => {
-        const { view } = this.state;
-        if (view !== 'list')
-            this.setState({view: 'list'});
-        this.modalHandler.show(
-            'create',{
-                name: '',
-                phone: ''
-            }
-        )
+        this.modalHandler.show();
     }
 
-    onViewSelect = (view) => {
-        this.setState({
-            view: view
-        });
+    handleDimmerClick = () => {
+        this.modalHandler.hide();
+    }
+
+    handleModalCancelClick = () => {
+        this.modalHandler.hide();
+    }
+
+    handleModalSubmitClick = () => {
+        this.modalHandler.hide();
+    }
+
+    modalHandler = {
+        show: () => {
+            this.setState({
+                modal:{
+                    visible: true
+                }
+            })
+        },
+        hide: () => {
+            this.setState({
+                modal: {
+                    visible: false
+                }
+            })
+        }
     }
 
     render() {
@@ -63,30 +72,36 @@ class App extends Component {
             contacts,
             modal
         } = this.state;
-
         const {
-            onViewSelect,
-            handleFloatingButtonClick
+            onClickViewSelector,
+            modalHandler,
+            handleFloatingButtonClick,
+            handleDimmerClick,
+            handleModalCancelClick,
+            handleModalSubmitClick
         } = this;
 
         return (
-            <div className='App'>
-                <Header/>
+            <div className="App">
+                <Header />
                 <ViewSelector
-                    onSelect={onViewSelect}
                     selected={view}
+                    onSelect={onClickViewSelector}
                 />
-                <Container visible={view==='favorite'}>
-                    즐겨찾기 컨테이너
-                </Container>
-
-                <Container visible={view==='list'}>
-                    <ContactList contacts={contacts}/>
-                </Container>
-                <ContactModal
-                   {...modal}
-               />
+                <ContactList
+                    visible={view==='list'}
+                    contacts={contacts}
+                />
                 <FloatingButton onClick={handleFloatingButtonClick}/>
+                <Modal
+                    visible={modal.visible}
+                    onCancel={handleModalCancelClick}
+                    onSubmit={handleModalSubmitClick}
+                />
+                <Dimmer
+                    visible={modal.visible}
+                    onClick={handleDimmerClick}
+                />
             </div>
         );
     }
