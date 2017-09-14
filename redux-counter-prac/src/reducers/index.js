@@ -12,6 +12,16 @@ function count(state = initialState, action) {
                 ...state,
                 number: state.number + 1
             };
+        case 'decrement':
+            return {
+                ...state,
+                number: state.number - 1
+            }
+        case 'set_color':
+            return {
+                ...state,
+                color: action.color
+            }
         default:
             return state;
     }
