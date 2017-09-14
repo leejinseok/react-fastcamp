@@ -4,24 +4,24 @@ import './Counter.css';
 const Counter = ({
     number,
     color,
+    index,
     onIncrement,
     onDecrement,
     onSetColor
 }) => {
     return(
         <div 
-            className="Counter"
-            style={{backgroundColor: color}}
-            onClick={onIncrement}
-            onDoubleClick={onSetColor}
+            className="Counter" 
+            onClick={() => onIncrement(index)} 
             onContextMenu={
-                (e) => {
-                    e.preventDefault();
-                    onDecrement();
+                (e) => { 
+                    e.preventDefault(); 
+                    onDecrement(index);
                 }
-            }
-        >
-            {number}
+            } 
+            onDoubleClick={() => onSetColor(index)}
+            style={{backgroundColor: color}}>
+                {number}
         </div>
     )
 }
