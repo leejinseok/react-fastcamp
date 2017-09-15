@@ -37,6 +37,28 @@ function count(state = initialState, action) {
                     ...counters.slice(action.index + 1, counters.length)
                 ]
             }
+        case 'decrement': 
+            return {
+                counters: [
+                    ...counters.slice(0, action.index),
+                    {
+                        ...counters[action.index],
+                        number: counters[action.index].number - 1
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
+            }
+        case 'set_color':
+            return {
+                counters: [
+                    ...counters.slice(0, action.index),
+                    {
+                        color: action.color,
+                        number: counters[action.index].number
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
+            }
         default:
             return state;
     }

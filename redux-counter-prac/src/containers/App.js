@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import Buttons from '../components/Buttons';
 import CounterListContainer from '../containers/CounterListContainer';
 import { getRandomColor } from '../utils';

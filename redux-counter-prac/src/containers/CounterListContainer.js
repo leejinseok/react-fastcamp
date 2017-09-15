@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchProps = (dispatch) => ({
     onIncrement: (index) => dispatch({type: 'increment', index}),
-    onDecrement: (index) => dispatch({type: 'decrement'}),
+    onDecrement: (index) => dispatch({type: 'decrement', index}),
     onSetColor: (index) => dispatch({type: 'set_color', color: getRandomColor(), index})
 });
 
