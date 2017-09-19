@@ -1,3 +1,5 @@
+import { Map, List } from 'immutable';
+
 // store (redux)
 // state, action (dispatch)
 const initialState = {
