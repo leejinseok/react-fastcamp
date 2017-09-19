@@ -2,65 +2,40 @@ import { Map, List } from 'immutable';
 
 // store (redux)
 // state, action (dispatch)
-const initialState = {
-    counters: [
-        {
+const initialState = Map({
+    counters: List([
+        Map({
             number: 0,
             color: 'black'
-        }
-    ]
-}
+        })
+    ])
+})
 
 function count(state = initialState, action) {
-    const { counters } = state;
+    const counters = state.get('counters');
     switch (action.type) {
         case 'create': 
-            return {
-                counters: [
-                    ...counters,
-                    {
-                        color: action.color,
-                        number: 0
-                    }
-                ]
-            }
+            return state.set('counters', counters.push(Map({
+                color: action.color,
+                number: 0
+            })));
         case 'remove':
-            return {
-                counters: counters.slice(0, counters.length - 1)
-            }
+            return state.set('counters', counters.pop());
         case 'increment': 
-            return {
-                counters: [
-                    ...counters.slice(0, action.index),
-                    {
-                        ...counters[action.index],
-                        number: counters[action.index].number + 1
-                    },
-                    ...counters.slice(action.index + 1, counters.length)
-                ]
-            }
+            return state.set('counters', counters.update(
+                action.index,
+                (counter) => counter.set('number', counter.get('number') + 1)
+            ));
         case 'decrement': 
-            return {
-                counters: [
-                    ...counters.slice(0, action.index),
-                    {
-                        ...counters[action.index],
-                        number: counters[action.index].number - 1
-                    },
-                    ...counters.slice(action.index + 1, counters.length)
-                ]
-            }
+            return state.set('counters', counters.update(
+                action.index,
+                (counter) => counter.set('number', counter.get('number') + 1)
+            ));
         case 'set_color':
-            return {
-                counters: [
-                    ...counters.slice(0, action.index),
-                    {
-                        color: action.color,
-                        number: counters[action.index].number
-                    },
-                    ...counters.slice(action.index + 1, counters.length)
-                ]
-            }
+            return state.set('counters', counters.update(
+                action.index,
+                (counter) => counter.set('color', action.color)
+            ));
         default:
             return state;
     }
