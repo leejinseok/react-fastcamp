@@ -5,8 +5,8 @@ const initialState = Map({
     number: 0
 });
 
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
+const INCREMENT = 'increment';
+const DECREMENT = 'decrement';
 
 export const increment = createAction(INCREMENT);
 export const decrement = createAction(DECREMENT);
@@ -18,5 +18,4 @@ export default handleActions({
     [DECREMENT]: (state, action) => {
         return state.set('number', state.get('number') - 1);
     }
-},initialState)
-
+}, initialState);

@@ -6,12 +6,11 @@ const Counter = ({
 }) => {
     return (
         <div>
-            <h2>
-                {number}
-            </h2>
+            {number}
             <button onClick={CounterActions.increment}>+</button>
             <button onClick={CounterActions.decrement}>-</button>
         </div>
     )
 }
+
 export default Counter;
