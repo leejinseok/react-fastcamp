@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "cross-env": "^5.0.5",
     "immutable": "^3.8.1",
     "open-color": "^1.5.1",
     "react": "^15.6.1",

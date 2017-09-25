@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Header from 'components/Header';
 
 class App extends Component {
     render() {
         return(
             <div>
-                헬로, 메모
+                <Header />
             </div>
         )
     }
