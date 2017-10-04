@@ -22,9 +22,12 @@ const Menu = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink exact to="/about/foo" activeStyle={activeStyle}>
+                    <NavLink to="/about/foo" activeStyle={activeStyle}>
                         어바웃 푸
                     </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/posts" activeStyle={activeStyle}>Posts</NavLink>
                 </li>
             </ul>
         </div>
