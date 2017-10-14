@@ -6,10 +6,8 @@ const About = ({match, location}) => {
     const detail = query.detail === 'true';
     return (
         <div>
-            <h2>{match.params.name} 소개</h2>
-            {detail && 'detail: blahblah'}
+            <h2>{match.params.name} 소개 </h2>
         </div>
-        
     );
 };
 export default About;
